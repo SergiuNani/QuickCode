@@ -66,3 +66,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.sidebar-item:hover {
+  background: #f00; /* Your hover background color */
+  color: #fff; /* Your hover text color */
+}
