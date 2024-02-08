@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { tokens } from "../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
@@ -10,9 +10,10 @@ import BugReportIcon from "@mui/icons-material/BugReport";
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const navigate = useNavigate();
   const handleClick = () => {
     setSelected(title);
+    navigate(to);
   };
 
   return (
@@ -24,16 +25,15 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       <MenuItem active={selected === title} onClick={handleClick} icon={icon}>
         <Typography>{title}</Typography>
       </MenuItem>
-      <Link to={to} style={{ textDecoration: "none", color: "inherit" }} />
+      <Link to={to} />
     </div>
   );
 };
-
 const SidebarComponent = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const [selected, setSelected] = useState("Home");
+  const [selected, setSelected] = useState("/Home");
 
   return (
     <Box
@@ -89,15 +89,17 @@ const SidebarComponent = () => {
             <Box paddingLeft={isCollapsed ? undefined : "10%"}>
               <Item
                 title="Home"
-                to="/home"
+                to="/Home"
                 icon={<HomeOutlinedIcon />}
                 selected={selected}
                 setSelected={setSelected}
-              />
+              >
+                {/* <Link to="/Home">Home</Link> */}
+              </Item>
 
               <Item
                 title="Debug"
-                to="/debug"
+                to="/Debug"
                 icon={<BugReportIcon />}
                 selected={selected}
                 setSelected={setSelected}
