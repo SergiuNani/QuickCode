@@ -47,7 +47,7 @@ export const DrawerComponent = ({ title, component }) => {
         style={{
           position: "fixed",
           width: "25rem",
-          backgroundColor: "#333",
+          backgroundColor: "#333", //Inocent comment
           color: "white",
           borderRadius: "1rem",
           height: "97vh",
